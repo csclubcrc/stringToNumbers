@@ -1,0 +1,65 @@
+#include <iostream>
+#include <string>
+#include <cmath> // including for use of pow() function 
+#include <stdio.h> // including header for use of atoi() function
+
+using namespace std;
+
+
+
+
+int main()
+{
+
+ string numberStr ;
+ cout << "Enter a number: ";
+ cin >> numberStr;
+
+ 
+ const int  strln = numberStr.length();
+
+ int   num = 0 ;
+ int  total = 0;
+ //allocates memory during runtime for an array
+int* const ar = new int [strln];
+ int n = strln -1;
+
+
+ num = atoi( numberStr.c_str()  );
+
+ // splits up numbers such as 123 to 1,2,3 and stores each inside an array
+ for ( int i = 0 ; i < strln; i++ ) 
+ { ar[i] =  num/ int ( pow(10.0,n-i) )  % 10;} 
+ 
+ //addes up numbers
+ for ( int i = 0; i < strln; i++ )
+ { total += ar[i]; }
+ 
+// biggest and smallest numbers
+ int largest = ar[0];
+ int smallest = ar[0];
+ for ( int j = 0; j < strln; j ++ ) 
+ {
+
+   cout << ar[j] << endl;
+	 if ( largest < ar[j] )
+	 {
+		 largest = ar[j];
+	 }
+
+	 if ( smallest > ar[j])
+	 {
+		 smallest = ar[j];
+	 }
+ }
+
+ // deleting allocated memory
+ delete [] ar;
+
+ cout <<"Total: " <<  total << endl;
+ cout << "largest " << largest <<  endl;
+ cout << "smallest " << smallest << endl;
+
+  system("pause");
+
+}
